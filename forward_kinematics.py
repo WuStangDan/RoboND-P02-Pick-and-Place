@@ -98,6 +98,14 @@ R_cor = simplify(R_z * R_y)
 # Total transform from base to gripper link.
 T_total = simplify(T0_G * R_cor)
 
+R3_6 = simplify(T3_4 * T4_5 * T5_6)
+
+print(R3_6[0,:])
+print(R3_6[1,:])
+print(R3_6[2,:])
+print(R3_6[3,:])
+print("\n\n\n")
+
 print("Total = ", T_total.evalf(subs={q1:-0.97, q2:-0.39, q3:0.72, q4:1.10, q5:-1.10, q6:0}))
 # subs={q1:0, q2:1.0, q3:0, q4:0.51, q5:-2.0, q6:0} produced identical results with RViz.
 # subs={q1:1.92, q2:0.5, q3:-3.03, q4:0.51, q5:-2.0, q6:-1.10} did also.

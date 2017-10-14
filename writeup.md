@@ -96,7 +96,7 @@ Since the total matrix is far too large to show, I've included an example that i
 
 And here's where you can draw out and show your math for the derivation of your theta angles. 
 
-![alt text][image2]
+
 
 ### Project Implementation
 
@@ -107,6 +107,5 @@ Here I'll talk about the code, what techniques I used, what worked and why, wher
 
 
 And just for fun, another example image:
-![alt text][image3]
 
 

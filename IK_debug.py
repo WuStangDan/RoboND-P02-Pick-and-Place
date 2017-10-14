@@ -113,7 +113,7 @@ def test_code(test_case):
     
 
     theta1 = atan2(your_wc[1], your_wc[0])
-    floor_dist = sqrt( (your_wc[1]) **2 + your_wc[0]**2)
+    floor_dist = sqrt( (your_wc[1]) **2 + your_wc[0]**2) # distance to wc with z = 0.
 
     # Law of cosines.
     c = sqrt( (floor_dist-s[a1])**2 + (your_wc[2]-s[d1])**2)
@@ -147,21 +147,25 @@ def test_code(test_case):
     T2_3 = T2_3.subs(s)
 
     T0_3 = simplify(T0_1 * T1_2 * T2_3)
-    
+    T0_3_t = T0_3.transpose()
     #print("Rrpy Start",Rrpy)
     Rrpy = Rrpy.row_insert(3, Matrix([[0, 0, 0]]))
     Rrpy = Rrpy.col_insert(3, Matrix([[0], [0], [0], [1]]))
     #print("Rrpy End", Rrpy)
 
-    R3_6 = T0_3.inv("LU") * Rrpy
+    R3_6 = T0_3_t * Rrpy
     R3_6 = R3_6.evalf(subs={q1:theta1, q2:theta2, q3:theta3})
 
+    theta4 = atan2(R3_6[2,2], -R3_6[0,2])
     theta5 = acos(R3_6[1,2])
-    theta4 = asin(R3_6[2,2]/sin(theta5))
-    theta6 = acos(R3_6[1,0]/sin(theta5))
-    print(theta4)
-    print(theta5)
-    print(theta6)
+    theta6 = atan2(-R3_6[1,1], R3_6[1,0])
+    print("[-2.99,-0.12,0.94,4.06,1.29,-4.12]")
+    print("Theta1", theta1)
+    print("Theta2", theta2)
+    print("Theta3", theta3)
+    print("Theta4", theta4)
+    print("Theta5", theta5) 
+    print("Theta6", theta6)
 
     ## 
     ########################################################################################
@@ -215,7 +219,7 @@ def test_code(test_case):
     # Total transform from base to gripper link.
     T_total = T0_3 * T3_4 * T4_5 * T5_6 * T6_G * R_cor
     T_total = T_total.evalf(subs={q1:theta1, q2:theta2, q3:theta3, q4:theta4, q5:theta5, q6:theta6})
-    print("Total = ", T_total)
+    #print("Total = ", T_total)
 
     ## For error analysis please set the following variables of your WC location and EE location in the format of [x,y,z]
     #your_wc = [1,1,1] # <--- Load your calculated WC values in this array

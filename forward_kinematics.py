@@ -74,11 +74,34 @@ T0_4 = simplify(T0_3 * T3_4)
 T0_5 = simplify(T0_4 * T4_5)
 T0_6 = simplify(T0_5 * T5_6)
 T0_G = simplify(T0_6 * T6_G)
-
+#print("T0_G = ", T0_G)
 
 # Test transforms.
 #print("T0_2 is", T0_2.evalf(subs={q1:0, q2:0, q3:0, q4:0, q5:0, q6:0})) # Matches RViz
 #print("T0_5 is", T0_5.evalf(subs={q1:0, q2:0, q3:0, q4:0, q5:0, q6:0})) # Matches RViz
 #print("T0_G is", T0_G.evalf(subs={q1:0, q2:0, q3:0, q4:0, q5:0, q6:0})) # Matches RViz
+
+# Correction for gripper link final axis orientation.
+R_y = Matrix([[cos(-pi/2),  0, sin(-pi/2), 0],
+              [0,           1, 0,           0],
+              [-sin(-pi/2), 0, cos(-pi/2),  0],
+              [0, 0, 0, 1]])
+
+R_z = Matrix([[cos(pi), -sin(pi), 0,  0],
+              [sin(pi), cos(pi),  0,  0],
+              [0, 0, 1, 0],
+              [0, 0, 0, 1]])
+
+R_cor = simplify(R_z * R_y)
+
+
+# Total transform from base to gripper link.
+T_total = simplify(T0_G * R_cor)
+
+print("Total = ", T_total.evalf(subs={q1:-0.97, q2:-0.39, q3:0.72, q4:1.10, q5:-1.10, q6:0}))
+# subs={q1:0, q2:1.0, q3:0, q4:0.51, q5:-2.0, q6:0} produced identical results with RViz.
+# subs={q1:1.92, q2:0.5, q3:-3.03, q4:0.51, q5:-2.0, q6:-1.10} did also.
+
+
 
 

@@ -99,7 +99,15 @@ R_cor = simplify(R_z * R_y)
 T_total = simplify(T0_G * R_cor)
 
 R3_6 = simplify(T3_4 * T4_5 * T5_6)
+print(R3_6)
 
+print(R3_6[0,:])
+print(R3_6[1,:])
+print(R3_6[2,:])
+print(R3_6[3,:])
+print("\n\n\n")
+
+R3_6 = simplify(T3_4 * T4_5 * T5_6 * T6_G)
 print(R3_6[0,:])
 print(R3_6[1,:])
 print(R3_6[2,:])

@@ -123,7 +123,7 @@ def test_code(test_case):
     tri_alpha = acos( (b**2 + c**2 - a**2)/(2*b*c) )
     theta2 = pi/2 - tri_alpha - atan2(your_wc[2]-s[d1], floor_dist-s[a1])
     tri_gamma = acos( (a**2 + b**2 - c**2)/(2*a*b) )
-    theta3 = pi/2 - atan2(s[a3], s[d4]) - tri_gamma
+    theta3 = pi/2 + atan2(s[a3], s[d4]) - tri_gamma
     
     #print("thetas", theta1, theta2, theta3)
 
@@ -274,6 +274,6 @@ def test_code(test_case):
 
 if __name__ == "__main__":
     # Change test case number for different scenarios
-    test_case_number = 3
+    test_case_number = 1
 
     test_code(test_cases[test_case_number])

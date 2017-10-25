@@ -95,7 +95,6 @@ Since the total matrix is far too large to show, I've included an example that i
 ![Terminal Output][image4]
 
 #### Inverse Kinematics 
-problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
 
 At this point the X, Y, Z position of the gripper and it's orientation in roll, pitch, and yaw is known (calculated from quaternion). Inverse kinematics is used to reverse this information into angles for each joint that will yield this position of the gripper.
 
